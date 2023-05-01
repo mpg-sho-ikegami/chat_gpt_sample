@@ -1,7 +1,6 @@
-import 'package:chat_gpt_sample/api_key.dart';
 import 'package:chat_gpt_sample/data/create_completion_request.dart';
 import 'package:chat_gpt_sample/data/create_completion_response.dart';
-import 'package:dio/dio.dart' hide Headers;
+import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_client.g.dart';
@@ -11,8 +10,8 @@ abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
   @POST("/completions")
-  @Headers(<String, dynamic>{
-    "Authorization" : "Bearer $API_KEY"
-  })
-  Future<CreateCompletionResponse> createCompletion(@Body() CreateCompletionRequest request);
+  Future<CreateCompletionResponse> createCompletion(
+    @Header("Authorization") String header,
+    @Body() CreateCompletionRequest request,
+  );
 }

@@ -22,13 +22,12 @@ class _ApiClient implements ApiClient {
 
   @override
   Future<CreateCompletionResponse> createCompletion(
-      CreateCompletionRequest request) async {
+    String header,
+    CreateCompletionRequest request,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{
-      r'Authorization':
-          'Bearer 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'
-    };
+    final _headers = <String, dynamic>{r'Authorization': header};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
