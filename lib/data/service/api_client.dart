@@ -11,8 +11,8 @@ final dioProvider = Provider<Dio>((_) {
 });
 
 final apiClientProvider = Provider<ApiClient>((ref) {
-  final _dio = ref.watch(dioProvider);
-  return ApiClient(_dio);
+  final dio = ref.watch(dioProvider);
+  return ApiClient(dio);
 });
 
 @RestApi(baseUrl: "https://api.openai.com/v1")
